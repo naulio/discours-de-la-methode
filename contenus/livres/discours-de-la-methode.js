@@ -1,6 +1,6 @@
-/* Contenu : Discours de la méthode (Descartes, 1637).
+/* Recto · Livre : Discours de la méthode (Descartes, 1637).
    Citations en orthographe modernisée. Toutes les questions renvoient à une notion (fiche). */
-window.DATA = (function () {
+Recto.add("discours-de-la-methode", (function () {
   const WIKI = "https://fr.wikisource.org/wiki/Discours_de_la_m%C3%A9thode_(%C3%A9d._Cousin)/";
 
   const parts = [
@@ -21,7 +21,7 @@ window.DATA = (function () {
   ];
 
   const reading = {
-    1: { full: 13, ess: 6, express: 3, wiki: WIKI + "Premi%C3%A8re_partie",
+    1: { full: 13, ess: 6, express: 3, link: WIKI + "Premi%C3%A8re_partie",
       text: {
         full: "Toute la partie, du « bon sens » jusqu'à la décision d'« étudier aussi en moi-même ».",
         ess: "Les deux premiers paragraphes (le bon sens, le projet), puis la revue des disciplines jusqu'à « je quittai entièrement l'étude des lettres », et le dernier paragraphe.",
@@ -35,7 +35,7 @@ window.DATA = (function () {
         "Le « grand livre du monde » : ce que les voyages lui apprennent sur la coutume",
         "La décision finale : étudier en lui-même"
       ] },
-    2: { full: 13, ess: 7, express: 4, wiki: WIKI + "Deuxi%C3%A8me_partie",
+    2: { full: 13, ess: 7, express: 4, link: WIKI + "Deuxi%C3%A8me_partie",
       text: {
         full: "Toute la partie, du poêle jusqu'aux mathématiques et à ses « vingt-trois ans ».",
         ess: "Le début (le poêle, l'architecte, Sparte, « nous avons tous été enfants »), puis à partir de « comme un homme qui marche seul et dans les ténèbres » jusqu'aux quatre règles et le paragraphe qui les suit.",
@@ -49,7 +49,7 @@ window.DATA = (function () {
         "Les quatre règles, presque mot à mot",
         "Les « longues chaînes de raisons » des géomètres"
       ] },
-    3: { full: 11, ess: 6, express: 3, wiki: WIKI + "Troisi%C3%A8me_partie",
+    3: { full: 11, ess: 6, express: 3, link: WIKI + "Troisi%C3%A8me_partie",
       text: {
         full: "Toute la partie, du logement provisoire jusqu'à la retraite en Hollande.",
         ess: "Le premier paragraphe (la maison à rebâtir), les trois maximes, et la conclusion (« cultiver ma raison »).",
@@ -63,7 +63,7 @@ window.DATA = (function () {
         "La conclusion : cultiver sa raison, « bien juger pour bien faire »",
         "Les sceptiques, le roc et l'argile, la retraite en Hollande"
       ] },
-    4: { full: 11, ess: 11, express: 7, wiki: WIKI + "Quatri%C3%A8me_partie",
+    4: { full: 11, ess: 11, express: 7, link: WIKI + "Quatri%C3%A8me_partie",
       text: {
         full: "Toute la partie : c'est le cœur métaphysique du livre, et elle est courte.",
         ess: "Toute la partie : c'est le cœur métaphysique du livre, et elle est courte. Ne saute rien.",
@@ -78,7 +78,7 @@ window.DATA = (function () {
         "Les preuves de Dieu (idée du parfait, dépendance, triangle)",
         "La sortie du rêve : chimère, jaunisse, géomètre endormi"
       ] },
-    5: { full: 24, ess: 8, express: 4, wiki: WIKI + "Cinqui%C3%A8me_partie",
+    5: { full: 24, ess: 8, express: 4, link: WIKI + "Cinqui%C3%A8me_partie",
       text: {
         full: "Toute la partie ; tu peux survoler la description détaillée du cœur.",
         ess: "Le premier paragraphe (le traité non publié, le monde nouveau), survole le cœur, puis lis attentivement à partir de « s'il y avait de telles machines » jusqu'à la fin.",
@@ -92,7 +92,7 @@ window.DATA = (function () {
         "« Un instrument universel »",
         "L'âme : créée, unie au corps (pas « un pilote en son navire »), immortelle"
       ] },
-    6: { full: 21, ess: 10, express: 5, wiki: WIKI + "Sixi%C3%A8me_partie",
+    6: { full: 21, ess: 10, express: 5, link: WIKI + "Sixi%C3%A8me_partie",
       text: {
         full: "Toute la partie, de la condamnation d'« une opinion de physique » jusqu'à la médecine.",
         ess: "Le début jusqu'à « maîtres et possesseurs de la nature » et la médecine, le passage sur les expériences, puis les deux derniers paragraphes (le français, la médecine).",
@@ -679,7 +679,7 @@ window.DATA = (function () {
         { l: "Fables et romans", r: "Risque des extravagances des paladins" },
         { l: "Éloquence et poésie", r: "Dons de l'esprit plutôt que fruits de l'étude" }
       ], explain: "Chaque discipline a un mérite, aucune ne donne de certitude utile à la vie." },
-    { part: 2, notion: "regles", q: "Associe chaque règle à l'expression qui la résume.",
+    { part: 2, notion: "regles", cite: true, q: "Associe chaque règle à l'expression qui la résume.",
       pairs: [
         { l: "Évidence", r: "« la précipitation et la prévention »" },
         { l: "Analyse", r: "« autant de parcelles qu'il se pourrait »" },
@@ -1030,5 +1030,43 @@ window.DATA = (function () {
       cit: "mon dessein n'est pas d'enseigner ici la méthode que chacun doit suivre pour bien conduire sa raison, mais seulement de faire voir en quelle sorte j'ai tâché de conduire la mienne." }
   ]);
 
-  return { parts, reading, notions, exercises };
-})();
+  /* Réglages propres à ce livre (le moteur a des valeurs par défaut pour les autres) */
+  const unit = { one: "partie", many: "parties", fem: true };
+  const exam = {
+    kind: "contrôle de lecture de philosophie",
+    format: "4 questions de réflexion en 1 h",
+    perQuestion: "environ 15 minutes par question"
+  };
+  const plan = {
+    defaultRead: [],
+    priority: [4, 2, 3, 1, 6, 5],
+    essOrder: [6, 5, 2, 3, 1],
+    fullOrder: [4, 6, 3, 2, 1, 5],
+    why: {
+      1: "La phrase d'ouverture sur le bon sens fournit souvent un sujet de réflexion.",
+      2: "Les quatre règles et l'image de l'architecte sont incontournables ; elles sont courtes et faciles à citer.",
+      3: "Les trois maximes et leurs images (la maison, la forêt) nourrissent toutes les réponses sur l'action.",
+      4: "C'est le cœur métaphysique du livre (doute, cogito, âme, Dieu, rêve), et c'est l'une des parties les plus courtes.",
+      5: "L'essentiel pour un contrôle est la fin : homme, animal et machine, avec les deux critères. Le cœur peut se survoler.",
+      6: "Les vidéos la survolent souvent ; or « maîtres et possesseurs de la nature » est un sujet classique."
+    }
+  };
+  const overview = {
+    title: "Le Discours en six temps",
+    intro: "Descartes compare sa démarche à une maison qu'on rebâtit : constater que le terrain est meuble, tracer le plan, se loger en attendant, poser les fondations, bâtir, puis habiter.",
+    boxes: [
+      { t: "Le fil rouge", b: "Le bon sens est égal en tous : tout dépend de la méthode. Douter pour juger, mais agir sans hésiter ; trouver un premier principe certain, puis bâtir une science utile à la vie." },
+      { t: "Le piège numéro un", b: "Ne pas mélanger avec les Méditations (1641) : ni malin génie, ni morceau de cire, ni « je suis, j'existe » dans le Discours." }
+    ]
+  };
+  const tips = [
+    "Pour chaque argument, cite une image ou une formule du texte (l'architecte, la forêt, le roc et l'argile, la chimère…) : c'est la preuve que tu as lu.",
+    "Ne mélange pas le Discours (1637) et les Méditations (1641) : pas de malin génie, pas de morceau de cire.",
+    "Distingue toujours juger (douter de tout) et agir (suivre fermement le plus probable) : beaucoup de questions reposent sur cette différence.",
+    "Annonce une problématique en une phrase, puis deux ou trois arguments dans l'ordre du texte.",
+    "Emploie le vocabulaire exact : évidence, doute méthodique, substance pensante, clair et distinct, morale par provision.",
+    "Termine par une nuance ou une limite (le « comme » de « maîtres et possesseurs », le provisoire de la morale)."
+  ];
+
+  return { unit, exam, plan, overview, tips, parts, reading, notions, exercises };
+})());
